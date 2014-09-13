@@ -1,4 +1,4 @@
 TiKaSo
 ======
 
-git-testi :)
+Syksy 2014 tietokantasovelluksen repo 
