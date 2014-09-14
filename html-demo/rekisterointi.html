@@ -18,13 +18,24 @@
                 <li class="navbar-right"><a href="kirjautuminen.html">Kirjaudu sisään</a></li> 
                 <li class="active navbar-right"><a href="rekisterointi.html">Rekisteröidy</a></li> 
             </ul>
-            <div class="container kirjautuminen">
-                <form class="form-signin" role="form" id="lomake">
-                    <h2 class="form-signin-heading">Rekisteröinti</h2>
-                    Tunnus: <input type="text" name="firstname"><br>
-                    Sähköpostiosoite: <input type="text" name="email"><br>
-                    Salasana: <input type="text" name="lastname"><br>
-                    Sukupuoli: <input type="radio" name="sex" value="male">Mies
+            <div class="container row">
+                <div class="col-md-5 oikealaita">
+                    <p>Tunnus</p>
+                    <p>Sähköpostiosoite</p>
+                    <p>Salasana</p>
+                    <p>Sukupuoli</p>
+                    <p>Etsin</p>
+                    <p>Syntymävuosi</p>
+                    <p>Paikkakunta</p>
+                    <p>Kerro jotain itsestäsi</p>
+                    
+                </div>
+                <div class="col-md-5">
+                    <form class="form-signin" role="form" id="lomake">
+                    <input type="text" name="firstname"><br>
+                    <input type="text" name="email"><br>
+                    <input type="text" name="lastname"><br>
+                    <input type="radio" name="sex" value="male">Mies
                     <input type="radio" name="sex" value="female">Nainen <br>
                     Etsin: <select name="etsin">
                         <option value="Kavereita">kavereita</option>
@@ -50,6 +61,9 @@
                     
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Valmis</button>
                 </form>
+                    
+                </div>
+                
             </div>
             <footer class="lopuke">
                 ©joopeti, PariTELE Oy 2014

@@ -48,6 +48,10 @@
     border-bottom: thin solid;
     border-bottom-color: lightblue;
 }
+.oikealaita{
+    text-align: right;
+    padding-top: 15px;
+}
 
 body {
     padding-top: 10px;
@@ -57,7 +61,7 @@ body {
 
 .form-signin {
     max-width: 500px;
-    padding: 15px;
+    padding-top: 15px;
     margin: 0 auto;
 }
 .form-signin .form-signin-heading,
