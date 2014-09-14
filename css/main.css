@@ -6,6 +6,24 @@
     border-top-color: #bbbbbb;
     color: #8e8e8e;
 }
+.yhteystiedot{
+    padding: 5px;
+    border: solid #bbbbbb 2px;
+    overflow: scroll;
+    height: 500px;
+    width: 200px;
+}
+.viestikentta{    
+}
+.viestit-oikea{
+    height: 400px;
+}
+.keskustelu{
+    padding-left: 10px;
+    overflow: scroll;
+    height: 400px;
+}
+
 .kirjautuminen{
     padding-left: 40px;
     padding-right: 40px;
@@ -14,7 +32,7 @@
     padding-top: 50px;
 }
 .vasen{
-    //margin-right: 10px;
+    padding-bottom: 10px;
     width: 300px;
     border-right-color: #bbbbbb;
 }
@@ -26,12 +44,12 @@
 
 }
 .centeredImage
-    {
+{
     text-align:center;
     margin-top:0px;
     margin-bottom:0px;
     padding-bottom: 10px;
-    }
+}
 .infovalikko{
     border-top-color: #bbbbbb;
     text-align: center;
