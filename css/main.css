@@ -4,7 +4,17 @@
 .lopuke{
     border-top: thin solid;
     border-top-color: #bbbbbb;
+    //background-color: #eee;
     color: #8e8e8e;
+    height: 20px;
+}
+.tyhjablocki{
+    height: 175px;
+    
+}
+.checkbox{
+    padding-left: 20px;
+    
 }
 .yhteystiedot{
     padding: 5px;
