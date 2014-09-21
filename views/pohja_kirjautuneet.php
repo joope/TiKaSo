@@ -17,8 +17,7 @@
                 <li><a href="selaus.php">Selaa</a></li>
                 <li><a href="viestit.php">Viestit</a></li>
                 <li><a href="profiili.php">Oma profiili</a></li>
-                <li class="navbar-right"><a href="kirjautuminen.php">Kirjautuminen</a></li> 
-                <li class="navbar-right"><a href="rekisterointi.php">Rekisteröityminen</a></li> 
+                <li class="navbar-right"><a href="kirjaudu_ulos.php">Kirjaudu ulos</a></li> 
             </ul>
             <?php if (!empty($data->virheViesti)): ?>
                 <div class="alert alert-danger"><?php echo $data->virheViesti; ?></div>

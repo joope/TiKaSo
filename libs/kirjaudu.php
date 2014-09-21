@@ -1,12 +1,24 @@
 <?php
-if (empty($_POST["username"]) || empty($_POST["password"])) {
+if (empty($_POST["username"]) && empty($_POST["password"])) {
     /* Käytetään omassa kirjastotiedostossa määriteltyä näkymännäyttöfunktioita */
     naytaNakyma('login.php');
     exit(); // Lopetetaan suoritus tähän. Kutsun voi sijoittaa myös naytaNakyma-funktioon, niin sitä ei tarvitse toistaa joka paikassa
 }
+  //Tarkistetaan että vaaditut kentät on täytetty:
+  if (empty($_POST["username"])) {
+    naytaNakyma("login.php", array(
+      'virheViesti' => "Kirjautuminen epäonnistui! Et antanut käyttäjätunnusta.",
+    ));
+  }
+  $kayttaja = $_POST["username"];
 
-$kayttaja = $_POST["username"];
-$salasana = $_POST["password"];
+  if (empty($_POST["password"])) {
+    naytaNakyma("login.php", array(
+      'kayttaja' => $kayttaja,
+      'virheViesti' => "Kirjautuminen epäonnistui! Et antanut salasanaa.",
+    ));
+  }
+  $salasana = $_POST["password"];
 
 $haettuKayttaja = Kayttaja::etsiKayttajaTunnuksilla($kayttaja, $salasana);
 if ($haettuKayttaja == null){
@@ -15,11 +27,11 @@ if ($haettuKayttaja == null){
         'kayttaja' => $kayttaja,
     ));
 } else {
+    $_SESSION['kirjautunut'] = $haettuKayttaja->getAsiakasID();
     naytaNakyma("profiili.php", array(
         'kayttaja' => $haettuKayttaja,
         'onnistumisViesti' => "Kirjautuminen onnistui! Tervetuloa ",
     ));
-    
 }
 
 

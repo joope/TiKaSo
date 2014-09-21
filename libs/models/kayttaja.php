@@ -39,7 +39,7 @@ class Kayttaja {
         $tulokset = array();
         foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
             $kayttaja = new Kayttaja();
-            $kayttaja->setKayttajaID($tulos->asiakasid);
+            $kayttaja->setAsiakasID($tulos->asiakasid);
             $kayttaja->setNimimerkki($tulos->nimimerkki);
             $kayttaja->setSalasana($tulos->salasana);
 

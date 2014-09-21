@@ -1,0 +1,2 @@
+<?php
+checkPrivileges('profiili.php');

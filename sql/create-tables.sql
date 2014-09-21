@@ -6,17 +6,29 @@ CREATE TABLE Asiakas
 	Email VARCHAR(128) NOT NULL,
 	Hakutarkoitus VARCHAR(64),
 	Syntymapaiva DATE(),
-	Paikkakunta VARCHAR(64),
 	Teksti VARCHAR(512),
-	Kuva BYTEA()
+	Yllapitaja boolean,
+	Kuva BYTEA(),
 );
+CREATE TABLE Laskutustiedot
+(
+	LaskutusID serial PRIMARY KEY,
+	AsiakasID integer References Asiakas(AsiakasID) NOT NULL, 
+	Etunimi VARCHAR(64),
+	Sukunimi VARCHAR(64),
+	Paikkakunta VARCHAR(64),
+	Asuinkaupunki VARCHAR(64),
+	Osoite VARCHAR(128)
+);
+
 CREATE TABLE Viesti
 (
 	ViestiID serial PRIMARY KEY,
 	LahettajaID integer references Asiakas(AsiakasID) NOT NULL,
 	VastaanottajaID integer references Asiakas(AsiakasID) NOT NULL,
 	Sisalto varchar(256) NOT NULL,
-	Lahetysaika timestamp() NOT NULL
+	Lahetysaika timestamp() NOT NULL,
+	Luettu boolean
 );
 CREATE TABLE Kiinnostus
 (	
