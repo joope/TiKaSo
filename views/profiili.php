@@ -6,6 +6,7 @@
                         <div class="infovalikko">
                             <a href="#">Vaihda kuva</a><br>
                             <a href="#">Luo salainen sivu</a><br>
+                            <a href="muokkaatietoja.php">Muokkaa tietojasi</a><br>
                             <a href="#">Poista tunnus</a><br>
                         </div>
                     </div>

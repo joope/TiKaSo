@@ -28,10 +28,9 @@ if ($haettuKayttaja == null){
     ));
 } else {
     $_SESSION['kirjautunut'] = $haettuKayttaja->getAsiakasID();
-    naytaNakyma("profiili.php", array(
-        'kayttaja' => $haettuKayttaja,
-        'onnistumisViesti' => "Kirjautuminen onnistui! Tervetuloa ",
-    ));
+    $_SESSION['juuriKirjautunut'] = true;
+    //lisää toiminto jolla siirrytään haettuun sivuun
+    header('Location: profiili.php');
 }
 
 

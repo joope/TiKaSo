@@ -1,1 +1,1 @@
-DROP TABLE SalaisetSivutNakevat, Salainensivu, Julkinensivu, Kiinnostus, Viesti, Asiakas;
+DROP TABLE SalaisetSivutNakevat, Salainensivu, Julkinensivu, Kiinnostus, Viesti, Kuvat, Laskutustiedot, Asiakas;
