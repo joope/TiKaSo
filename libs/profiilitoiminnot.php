@@ -24,8 +24,16 @@ if (isset($_POST['poista'])) {
         ));
     }
 }
-naytaNakyma($sivu, array(
-    'oikeudet' => $oikeudet,
-    'kirjautunut' => $_SESSION['kirjautunut'],
-    'kayttaja' => $kayttaja
-));
+if ($id == $_SESSION['kirjautunut'] || $_SESSION['admin']) {
+    naytaNakyma($sivu, array(
+        'oikeudet' => $oikeudet,
+        'kirjautunut' => $_SESSION['kirjautunut'],
+        'kayttaja' => $kayttaja
+    ));
+} else{
+    naytaNakyma("toisenProfiili.php", array(
+        'oikeudet' => $oikeudet,
+        'kirjautunut' => $_SESSION['kirjautunut'],
+        'kayttaja' => $kayttaja
+    ));
+}

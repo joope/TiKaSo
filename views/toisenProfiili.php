@@ -1,5 +1,5 @@
 <div class="container kirjautuminen">
-    <h3>Oma profiili</h3>
+    <h3><?php echo $data->kayttaja->getNimimerkki(); ?></h3>
     <div class="row">
         <div class="col-md-4">
             <p class="centeredImage"><img src="http://www.fact.co.uk/media/497038/the_shining_2.png" width="320" height="200" align="middle" alt="Kaunis nainen :D"></p>
@@ -7,9 +7,13 @@
                 <?php //if($_SESSION['admin'] || $_SESSION['kirjautunut'] == $data->kayttaja->getAsiakasID){ ?>
                 <a href="#">Raportoi</a><br>
                 <a href="#">Tarkastele salaisia sivuja</a><br>
+                <form action="viestit.php" method="POST">
+                    <input type="hidden" name="viesti" value="<?php echo $data->kayttaja->getAsiakasID() ?>"/>
+                    <button class="link" type="submit">Lähetä viesti</button><br>
+                </form>
                 <form action="profiili.php" method="POST">
-                    <input type="hidden" name="poista" value="<?php echo $_SESSION['kirjautunut'] ?>"/>
-                    <button class="link" onclick="varmista()" type="submit">Poista tunnus</button><br>
+                    <input type="hidden" name="jaaSivut" value="<?php echo $data->kayttaja->getAsiakasID() ?>"/>
+                    <button class="link" type="submit">Jaa salaiset sivusi</button><br>
                 </form>
             </div>
         </div>

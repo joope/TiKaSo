@@ -52,7 +52,8 @@ CREATE TABLE Julkinensivu
 CREATE TABLE Salainensivu
 (
 	SalainenID serial PRIMARY KEY,
-	OmistajaID integer references Asiakas(AsiakasID)
+	OmistajaID integer references Asiakas(AsiakasID),
+	SalainenSisalto varchar(256) NOT NULL
 );
 CREATE TABLE SalaisetSivutNakevat
 (

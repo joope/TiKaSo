@@ -22,8 +22,8 @@ VALUES ('Uiminen', 1), ('Urheilu', 1);
 INSERT INTO Julkinensivu (OmistajaID, Raportoitu)
 VALUES (1, false);
 
-INSERT INTO Salainensivu (OmistajaID)
-VALUES (1);
+INSERT INTO Salainensivu (OmistajaID, SalainenSisalto)
+VALUES (1, 'Tämä on jonnen salainen sivu, jonne salaisesti tykkää php:stä'), (2, 'Tämä on jonnan salainen sivu, jonna on salaisesti ihastunut Jonneen :3');
 
 INSERT INTO SalaisetSivutNakevat(SalainenID, AsiakasID)
 VALUES (1, 2);

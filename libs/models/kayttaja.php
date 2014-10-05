@@ -98,17 +98,17 @@ class Kayttaja {
     }
 
     public function lisaaTietokantaan() {
-        if ($this->onkoNimimerkkiKaytossa($Nimimerkki)) {
+        if ($this->onkoNimimerkkiKaytossa($this->Nimimerkki)) {
             $this->Virheet['Nimimerkki'] = "Nimimerkki on jo käytössä.";
-            return;
+            return false;
         }
-        $sql = "INSERT INTO Asiakas(Nimimerkki, Salasana, Email, Hakutarkoitus, Sukupuoli, Teksti, Yllapitaja) VALUES(?,?,?,?,?,?) RETURNING AsiakasID";
+        $sql = "INSERT INTO Asiakas(Nimimerkki, Salasana, Email, Sukupuoli, Hakutarkoitus, Teksti, Yllapitaja) VALUES(?,?,?,?,?,?,?) RETURNING AsiakasID";
         $kysely = getTietokantayhteys()->prepare($sql);
         $ok = $kysely->execute(array($this->getNimimerkki(),
             $this->getSalasana(),
             $this->getEmail(),
-            $this->getHakutarkoitus(),
             $this->getSukupuoli(),
+            $this->getHakutarkoitus(),
             $this->getTeksti(),
             "false"));
         if ($ok) {
@@ -170,7 +170,8 @@ class Kayttaja {
     public function onkoNimimerkkiKaytossa($Nimimerkki) {
         $sql = "SELECT * FROM Asiakas WHERE Nimimerkki = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
-        $kysely->execute(array($Nimimerkki));
+        $kysely->execute(array(
+            $Nimimerkki));
 
         $tulos = $kysely->fetchObject();
         if ($tulos == null) {

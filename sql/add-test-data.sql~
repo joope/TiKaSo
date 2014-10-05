@@ -1,7 +1,7 @@
 INSERT INTO Asiakas (Nimimerkki, Salasana, Email, Sukupuoli, Hakutarkoitus, Syntymapaiva, Teksti, Yllapitaja) 
 VALUES ('Jonne', 'superman', 'jonnejonneton@gmail.com', true, 'Ystäviä', DATE '1993-07-12', 'Oon ihan hyvä jätkä, tuu sanoo moi', false),
 ('Janita', 'superwoman', 'janita@hotmail.com', false, 'Ystäviä', DATE '1993-03-09', 'Oon ihan hyvä typy, tuu sanoo moi :)', true), 
-('Jonne', 'superman', 'jonnejonneton@gmail.com', true, 'Ystäviä', DATE '1993-07-12', 'Oon ihan hyvä jätkä, tuu sanoo moi', false),
+('Jonne2', 'superman', 'jonnejonneton@gmail.com', true, 'Ystäviä', DATE '1993-07-12', 'Oon ihan hyvä jätkä, tuu sanoo moi', false),
 ('Jp', 'superwoman', 'janita@hotmail.com', true, 'Ystäviä', DATE '1993-03-09', 'Oon ihan hyvä typy, tuu sanoo moi :)', false),
 ('Hilla', 'superman', 'jonnejonneton@gmail.com', false, 'Ystäviä', DATE '1993-07-12', 'Oon ihan hyvä jätkä, tuu sanoo moi', false),
 ('Hermione', 'superwoman', 'janita@hotmail.com', false, 'Ystäviä', DATE '1993-03-09', 'Oon ihan hyvä typy, tuu sanoo moi :)', false),
@@ -22,8 +22,8 @@ VALUES ('Uiminen', 1), ('Urheilu', 1);
 INSERT INTO Julkinensivu (OmistajaID, Raportoitu)
 VALUES (1, false);
 
-INSERT INTO Salainensivu (OmistajaID)
-VALUES (1);
+INSERT INTO Salainensivu (OmistajaID, SalainenSisaltoID)
+VALUES (1, 'Tämä on jonnen salainen sivu, jonne salaisesti tykkää php:stä'), (2, 'Tämä on jonnan salainen sivu, jonna on salaisesti ihastunut Jonneen :3');
 
 INSERT INTO SalaisetSivutNakevat(SalainenID, AsiakasID)
 VALUES (1, 2);

@@ -14,11 +14,11 @@ if (isset($_POST['Tunnus'])) {
 $virheet = $uusiKayttaja->getVirheet();
 $virheilmoitus = "";
 
-if (empty($virheet) && isset($_POST['Tunnus'])) {
-    $uusiKayttaja->lisaaTietokantaan();
+if (empty($virheet) && isset($_POST['Tunnus']) && $uusiKayttaja->lisaaTietokantaan() != false) {
     $_SESSION['Onnistui'] = "Rekisteröinti onnistui! Kirjaudu sisään.";
     header('Location: kirjautuminen.php');
 } else {
+    $virheet = $uusiKayttaja->getVirheet();
     naytaNakyma('rekisterointi.php', array(
         'kayttaja' => $uusiKayttaja,
         'virheViesti' => reset($virheet)
