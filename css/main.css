@@ -24,6 +24,7 @@
     padding: 5px;
     border: solid #bbbbbb 2px;
     overflow: scroll;
+    overflow-x:hidden;
     height: 500px;
     width: 200px;
 }
@@ -33,9 +34,10 @@
     height: 400px;
 }
 .keskustelu{
-    padding-left: 10px;
+    padding-left: 15px;
     overflow: scroll;
     height: 400px;
+    overflow-x:hidden;
 }
 
 .kirjautuminen{

@@ -7,6 +7,7 @@ class Kayttaja {
     private $Salasana;
     private $Email;
     private $Sukupuoli;
+    private $Syntymapaiva;
     private $Hakutarkoitus;
     private $Teksti;
     private $Yllapitaja;
@@ -32,10 +33,18 @@ class Kayttaja {
         }
     }
 
+    public static function poistaTunnus($AsiakasID) {
+        $sql = "DELETE from Asiakas WHERE AsiakasID = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $id = $AsiakasID;
+        $kysely->execute(array($id));
+    }
+
     public static function etsiKayttaja($AsiakasID) {
         $sql = "SELECT * from Asiakas where AsiakasID = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
-        $kysely->execute(array($AsiakasID));
+        $id = $AsiakasID;
+        $kysely->execute(array($id));
 
         $tulos = $kysely->fetchObject();
         if ($tulos == null) {
@@ -46,14 +55,37 @@ class Kayttaja {
             $kayttaja->setNimimerkki($tulos->nimimerkki);
             $kayttaja->setSalasana($tulos->salasana);
             $kayttaja->setEmail($tulos->email);
+            $kayttaja->setSukupuoli($tulos->sukupuoli);
             $kayttaja->setHakutarkoitus($tulos->hakutarkoitus);
+            $kayttaja->setSyntymapaiva($tulos->syntymapaiva);
             $kayttaja->setTeksti($tulos->teksti);
 
             return $kayttaja;
         }
     }
 
-    public function muutaTietoja() {
+    public static function etsiViestejaLahettaneet($VastaanottajaID) {
+        $sql = "SELECT * FROM Asiakas WHERE AsiakasID IN (SELECT LahettajaID FROM Viesti WHERE VastaanottajaID = ?)";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array(
+            $VastaanottajaID,
+        ));
+        $tulokset = array();
+        foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
+            $kayttaja = new Kayttaja();
+            $kayttaja->setAsiakasID($tulos->asiakasid);
+            $kayttaja->setNimimerkki($tulos->nimimerkki);
+            $kayttaja->setEmail($tulos->email);
+            $kayttaja->setHakutarkoitus($tulos->hakutarkoitus);
+            $kayttaja->setTeksti($tulos->teksti);
+
+            $tulokset[] = $kayttaja;
+        }
+
+        return $tulokset;
+    }
+
+    public function muutaTietoja($AsiakasID) {
         $sql = "UPDATE Asiakas SET Nimimerkki = ?, Email = ?, Hakutarkoitus = ?, Teksti = ? WHERE AsiakasID = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
         $kysely->execute(array(
@@ -61,17 +93,22 @@ class Kayttaja {
             $this->getEmail(),
             $this->getHakutarkoitus(),
             $this->getTeksti(),
-            $this->getAsiakasID()
+            $AsiakasID
         ));
     }
 
     public function lisaaTietokantaan() {
-        $sql = "INSERT INTO Asiakas(Nimimerkki, Salasana, Email, Hakutarkoitus, Teksti, Yllapitaja) VALUES(?,?,?,?,?,?) RETURNING AsiakasID";
+        if ($this->onkoNimimerkkiKaytossa($Nimimerkki)) {
+            $this->Virheet['Nimimerkki'] = "Nimimerkki on jo käytössä.";
+            return;
+        }
+        $sql = "INSERT INTO Asiakas(Nimimerkki, Salasana, Email, Hakutarkoitus, Sukupuoli, Teksti, Yllapitaja) VALUES(?,?,?,?,?,?) RETURNING AsiakasID";
         $kysely = getTietokantayhteys()->prepare($sql);
         $ok = $kysely->execute(array($this->getNimimerkki(),
             $this->getSalasana(),
             $this->getEmail(),
             $this->getHakutarkoitus(),
+            $this->getSukupuoli(),
             $this->getTeksti(),
             "false"));
         if ($ok) {
@@ -96,6 +133,14 @@ class Kayttaja {
             $tulokset[] = $kayttaja;
         }
         return $tulokset;
+    }
+    
+    public function naytaSukupuoli(){
+        if($this->getSukupuoli() == true){
+            return "Mies";
+        } else{
+            return "Nainen";
+        }
     }
 
     public static function lukumaara() {
@@ -122,14 +167,27 @@ class Kayttaja {
         return $tulokset;
     }
 
+    public function onkoNimimerkkiKaytossa($Nimimerkki) {
+        $sql = "SELECT * FROM Asiakas WHERE Nimimerkki = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($Nimimerkki));
+
+        $tulos = $kysely->fetchObject();
+        if ($tulos == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public function palautaSukupuoli($Sukupuoli) {
         if (!isset($this->Sukupuoli)) {
             return "";
         }
-        if ($this->Sukupuoli == "mies" && $Sukupuoli == "m") {
+        if ($this->Sukupuoli && $Sukupuoli == "m") {
             return "checked";
         }
-        if ($this->Sukupuoli == "nainen" && $Sukupuoli == "f") {
+        if (!$this->Sukupuoli && $Sukupuoli == "f") {
             return "checked";
         }
     }
@@ -172,7 +230,15 @@ class Kayttaja {
         return $this->Hakutarkoitus;
     }
 
+    public function getSyntymapaiva() {
+        return $this->Syntymapaiva;
+    }
+
     /* Setterit alkaa */
+
+    public function setSyntymapaiva($Syntymapaiva) {
+        $this->Syntymapaiva = $Syntymapaiva;
+    }
 
     public function setTeksti($Teksti) {
         $syote = htmlspecialchars($Teksti);

@@ -1,4 +1,5 @@
 <?php
+$oikeudet = tarkistaOikeudet();
 $sivunro = 1;
 if (isset($_GET['sivu'])) {
     $sivunro = (int)$_GET['sivu'];
@@ -10,7 +11,8 @@ $listausmaara = 4;
 $asiakaslista = Kayttaja::getKayttajatSivulla($sivunro, $listausmaara); 
 $sivumaara = ceil(Kayttaja::lukumaara()/$listausmaara);
 
-checkPrivileges($sivu, array(
+naytaNakyma($sivu, array(
+    'oikeudet' => $oikeudet,
     'hakutulos' => $asiakaslista,
     'sivumaara' => $sivumaara,
     'sivu' => $sivunro

@@ -31,8 +31,8 @@ CREATE TABLE Kuvat
 CREATE TABLE Viesti
 (
 	ViestiID serial PRIMARY KEY,
-	LahettajaID integer references Asiakas(AsiakasID) NOT NULL,
-	VastaanottajaID integer references Asiakas(AsiakasID) NOT NULL,
+	LahettajaID integer references Asiakas(AsiakasID),
+	VastaanottajaID integer references Asiakas(AsiakasID),
 	Sisalto varchar(256) NOT NULL,
 	Lahetysaika timestamp NOT NULL,
 	Luettu boolean

@@ -1,8 +1,9 @@
 <?php
+$oikeudet = tarkistaOikeudet();
+$kirjautunut = (int) $_SESSION['kirjautunut'];
+$uusiKayttaja = Kayttaja::etsiKayttaja($kirjautunut);
 
-$uusiKayttaja = Kayttaja::etsiKayttaja($_SESSION['kirjautunut']);
-
-if (isset($_POST['Tunnus'])) {
+if (isset($_POST['muokkattiin'])) {
     $uusiKayttaja->setNimimerkki($_POST['Tunnus']);
     $uusiKayttaja->setEmail($_POST['Email']);
     $uusiKayttaja->setSukupuoli($_POST['Sex']);
@@ -12,14 +13,14 @@ if (isset($_POST['Tunnus'])) {
 }
 
 $virheet = $uusiKayttaja->getVirheet();
-$virheilmoitus = "";
 
-if (empty($virheet) && isset($_POST['Tunnus'])) {
-    $uusiKayttaja->muutaTietoja();
-    $_SESSION['Onnistui'] = "Tietot muutettu.";
+if (empty($virheet) && isset($_POST['muokattiin'])) {
+    $uusiKayttaja->muutaTietoja($kirjautunut);
+    $_SESSION['Onnistui'] = "Tiedot muutettu.";
     header('Location: profiili.php');
 } else {
-    naytaNakyma('rekisterointi.php', array(
+    naytaNakyma('muokkaus.php', array(
+        'oikeudet' => $oikeudet,
         'kayttaja' => $uusiKayttaja,
         'virheViesti' => reset($virheet)
     ));

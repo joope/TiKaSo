@@ -13,12 +13,20 @@
             <ul class="nav nav-pills" id="navigaatio">
                 <li class="navbar-header">
                     <a class="navbar-brand" href="index.php">Ystävänvälityspalvelu</a></li>
-                <li <?=echoActiveClassIfRequestMatches("etsi")?>><a href="selaus.php">Etsi</a></li>
-                <li <?=echoActiveClassIfRequestMatches("selaus")?>><a href="selaus.php">Selaa</a></li>
-                <li <?=echoActiveClassIfRequestMatches("viestit")?>><a href="viestit.php">Viestit</a></li>
-                <li <?=echoActiveClassIfRequestMatches("profiili")?>><a href="profiili.php">Oma profiili</a></li>
+                <li <?= echoActiveClassIfRequestMatches("etsi") ?>><a href="selaus.php">Etsi</a></li>
+                <li <?= echoActiveClassIfRequestMatches("selaus") ?>><a href="selaus.php">Selaa</a></li>
+                <li <?= echoActiveClassIfRequestMatches("viestit") ?>><a href="viestit.php">Viestit</a></li>
+                <li <?= echoActiveClassIfRequestMatches("profiili") ?>><a href="profiili.php">Oma profiili</a></li>
                 <li class="navbar-right"><a href="kirjaudu_ulos.php">Kirjaudu ulos</a></li> 
             </ul>
+            <?php if (!empty($_SESSION['Onnistui'])): ?>
+                <div class="alert alert-success"><?php echo $_SESSION['Onnistui']; ?></div>
+                <?php unset($_SESSION['Onnistui']); ?>
+            <?php endif; ?>
+            <?php if (!empty($_SESSION['Epaonnistui'])): ?>
+                <div class="alert alert-danger"><?php echo $_SESSION['Epaonnistui']; ?></div>
+                <?php unset($_SESSION['Epaonnistui']); ?>
+            <?php endif; ?>
             <?php if (!empty($data->virheViesti)): ?>
                 <div class="alert alert-danger"><?php echo $data->virheViesti; ?></div>
             <?php endif; ?>

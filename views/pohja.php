@@ -24,6 +24,10 @@
                 <div class="alert alert-success"><?php echo $_SESSION['Onnistui']; ?></div>
                 <?php unset($_SESSION['Onnistui']); ?>
             <?php endif; ?>
+                <?php if (!empty($_SESSION['Epaonnistui'])): ?>
+                <div class="alert alert-danger"><?php echo $_SESSION['Epaonnistui']; ?></div>
+                <?php unset($_SESSION['Epaonnistui']); ?>
+            <?php endif; ?>
             <?php if (!empty($data->virheViesti)): ?>
                 <div class="alert alert-danger"><?php echo $data->virheViesti; ?></div>
             <?php endif; ?>
