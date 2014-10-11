@@ -23,7 +23,39 @@ class Viesti {
             "false"));
         return $ok;
     }
+    
+    public static function getViesti($ViestiID){
+        $sql = "SELECT * from Viesti where ViestiID = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array(
+            $ViestiID
+        ));
+        $tulos = $kysely->fetchObject();
+        if ($tulos == null) {
+            return null;
+        } else{
+            $haettuViesti = new Viesti();
+            $haettuViesti->setViestiID($tulos->viestiid);
+            $haettuViesti->setLahettajaID($tulos->lahettajaid);
+            $haettuViesti->setVastaanottajaID($tulos->vastaanottajaid);
+            $haettuViesti->setSisalto($tulos->sisalto);
+            $haettuViesti->setLahetysaika($tulos->lahetysaika);
+            $haettuViesti->setLuettu($tulos->luettu);
+            return $haettuViesti;
+        }
+    }
+    
+    public static function poistaViesti($ViestiID){
+        $poistettava = (int)$ViestiID;
+        $sql = "DELETE from Viesti where ViestiID = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array(
+            $poistettava
+        ));
+        
+    }
 
+    /*Etsii käyttäjien väliset viestit ja palauttaa ne lähetysajan mukaan taulukossa. Aloitusviestejä ei oteta huomioon */
     
     public static function etsiViestit($VastaanottajaID, $LahettajaID){
         $sql = "SELECT * FROM Viesti WHERE (VastaanottajaID = ? AND LahettajaID = ?) OR (VastaanottajaID = ? AND LahettajaID = ?) ORDER BY Lahetysaika DESC LIMIT 100";
@@ -36,7 +68,11 @@ class Viesti {
             $VastaanottajaID
         ));
         foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
+            if($tulos->sisalto == "ALOITUSVIESTI"){
+                continue;
+            }
             $Viesti = new Viesti();
+            $Viesti->setViestiID($tulos->viestiid);
             $Viesti->setVastaanottajaID($tulos->vastaanottajaid);
             $Viesti->setLahettajaID($tulos->lahettajaid);
             $Viesti->setSisalto($tulos->sisalto);
@@ -48,6 +84,15 @@ class Viesti {
  
         return $tulokset;
         
+    }
+    
+    public static function poistaViestit($kayttajaID){
+        $sql = "DELETE from Viesti where LahettajaID = ? OR VastaanottajaID = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array(
+            $kayttajaID,
+            $kayttajaID
+        ));
     }
 
     public function getViestiID() {

@@ -1,7 +1,4 @@
-<script type="text/javascript">
-var viestit = document.getElementById('viestit');
-objDiv.scrollTop = objDiv.scrollHeight;
-</script>
+
 <h3>Keskustelu: <?php echo $data->lahettaja->getNimimerkki(); ?></h3>
 <div class="row">
     <div class="col-md-4 yhteystiedot">
@@ -17,10 +14,22 @@ objDiv.scrollTop = objDiv.scrollHeight;
     </div>
     <div class="col-md-8">
         <div class="panel panel-default keskustelu" id="viestit">
-            <?php foreach ($data->viestit as $viesti) {?>
-            <i><?php echo $viesti->getLahetysaika(); ?></i>
-            <b><?php echo $viesti->getLahettajaID(); ?>: </b>
+            <?php foreach ($data->viestit as $viesti) { ?>
+                <form action="viestit.php" onsubmit="return confirm('Poistetaanko viesti?')" method="POST">
+                    <input type="hidden" name="poistaviesti" value="<?php echo $viesti->getViestiID()?>">
+                    <input type="hidden" name="keskustelu" value="<?php echo $data->lahettajaID ?>">
+                    <?php if($viesti->getLahettajaID() == $data->kayttaja->getAsiakasID()){
+                        echo '<button class="link" type="text">x</button>';
+                    } else{
+                        echo '<span class="white-text" style="margin-left: 2em;"></span>';
+                    } ?>
+                <span style="font-size: 12px;">(<?php echo date("H:i:s", strtotime($viesti->getLahetysaika()));?>)</span>
+                <b><?php if ($viesti->getLahettajaID() == $data->lahettajaID){
+                    echo $data->lahettaja->getNimimerkki();} else{
+                    echo $data->kayttaja->getNimimerkki();
+                }?>: </b>
                 <?php echo $viesti->getSisalto(); ?>
+                </form>
                 <br> <?php } ?>
         </div>
         <div class="panel viestikentta">

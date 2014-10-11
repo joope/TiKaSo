@@ -37,14 +37,14 @@ function kirjauduUlos() {
 
 function tarkistaOikeudet() {
     if (onKirjautunut()) {
-        if(isset($_SESSION['admin']) && $_SESSION['admin'] == true){
+        if(isset($_SESSION['admin']) && $_SESSION['admin'] == "true"){
             return 'admin';
         } else{
             return 'kayttaja';
         }
     } else{
         $_SESSION['Epaonnistui'] = "Kirjaudu ensin sisään!";
-        $_SESSION['haettuSivu'] = $sivu;
+        $_SESSION['Haettiin'] = $sivu;
         header('Location: kirjautuminen.php');
         exit();
     }

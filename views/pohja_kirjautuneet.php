@@ -13,12 +13,13 @@
             <ul class="nav nav-pills" id="navigaatio">
                 <li class="navbar-header">
                     <a class="navbar-brand" href="index.php">Ystävänvälityspalvelu</a></li>
-                <li <?= echoActiveClassIfRequestMatches("etsi") ?>><a href="selaus.php">Etsi</a></li>
+                <li <?= echoActiveClassIfRequestMatches("etsi") ?>><a href="etsi.php">Etsi</a></li>
                 <li <?= echoActiveClassIfRequestMatches("selaus") ?>><a href="selaus.php">Selaa</a></li>
                 <li <?= echoActiveClassIfRequestMatches("viestit") ?>><a href="viestit.php">Viestit</a></li>
-                <li <?= echoActiveClassIfRequestMatches("profiili") ?>><a href="profiili.php">Oma profiili</a></li>
+                <li <?= echoActiveClassIfRequestMatches("profiili") ?>><a href="profiili.php">Profiili</a></li>
                 <li class="navbar-right"><a href="kirjaudu_ulos.php">Kirjaudu ulos</a></li> 
             </ul>
+            <!-- Tähän ilmoitukset mahdollisista virhe- ja onnistumisviesteistä -->
             <?php if (!empty($_SESSION['Onnistui'])): ?>
                 <div class="alert alert-success"><?php echo $_SESSION['Onnistui']; ?></div>
                 <?php unset($_SESSION['Onnistui']); ?>

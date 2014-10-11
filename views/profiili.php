@@ -8,14 +8,9 @@
                 <a href="#">Vaihda kuva</a><br>
                 <a href="#">Luo salainen sivu</a><br>
                 <a href="muokkaatietoja.php">Muokkaa tietoja</a><br>
-                <form action="profiili.php" method="POST">
+                <form action="profiili.php" method="POST" onsubmit="return confirm('Haluatko varmasti poistaa tunnuksesi ja siihen liittyvät tiedot?');">
                     <input type="hidden" name="poista" value="<?php echo $_SESSION['kirjautunut'] ?>"/>
-                    <button class="link" onclick="varmista()" type="submit">Poista tunnus</button><br>
-                    <script>
-                        function varmista() {
-                            confirm("Haluatko varmasti poistaa tunnuksen?");
-                        }
-                    </script>
+                    <button class="link">Poista tunnus</button><br>
                 </form>
             </div>
         </div>

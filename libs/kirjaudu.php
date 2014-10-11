@@ -1,5 +1,4 @@
 <?php
-
 if (empty($_POST["username"]) && empty($_POST["password"])) {
     /* Käytetään omassa kirjastotiedostossa määriteltyä näkymännäyttöfunktioita */
     naytaNakyma('login.php');
@@ -32,9 +31,8 @@ if ($haettuKayttaja == null) {
     $_SESSION['admin'] = $haettuKayttaja->getYllapitaja();
     $_SESSION['juuriKirjautunut'] = true;
     //lisää toiminto jolla siirrytään haettuun sivuun
-    if (isset($_SESSION['haettuSivu'])) {
-        $haettu = $_SESSION['haettuSivu'];
-        header('Location: '.$haettu);
+    if (isset($haettusivu)) {
+        header('Location: '.$haettusivu);
         exit();
     } else {
         header('Location: profiili.php');

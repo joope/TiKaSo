@@ -16,7 +16,7 @@
                 <li><a href="etsi.php">Etsi</a></li>
                 <li><a href="selaus.php">Selaa</a></li>
                 <li><a href="viestit.php">Viestit</a></li>
-                <li><a href="profiili.php">Oma profiili</a></li>
+                <li><a href="profiili.php">Profiili</a></li>
                 <li class="navbar-right"><a href="kirjautuminen.php">Kirjaudu</a></li> 
                 <li class="navbar-right"><a href="rekisterointi.php">Rekisteröidy</a></li> 
             </ul>

@@ -5,14 +5,14 @@
         <input type="password" class="form-control" placeholder="Salasana" required name="Salasana">
         <input type="hidden" name="muokattiin" value="true">
 
-        <p>Sukupuoli: <input type="radio" name="Sex" value="mies" <?php echo $data->kayttaja->palautaSukupuoli("m") ?>>Mies
-            <input type="radio" name="Sex" value="nainen" <?php echo $data->kayttaja->palautaSukupuoli("f") ?>>Nainen</p>
+        <p>Sukupuoli: <input type="radio" name="Sex" value="m" <?php echo $data->kayttaja->palautaSukupuoli("m") ?>>Mies
+            <input type="radio" name="Sex" value="f" <?php echo $data->kayttaja->palautaSukupuoli("f") ?>>Nainen</p>
         <p>Mitä etsit?
             <select name="Hakuperuste">
                 <option value="Kavereita">kavereita</option>
                 <option value="Juttuseuraa">juttuseuraa</option>
                 <option value="Seurustelusuhdetta">seurustelusuhdetta</option>
-                <option value="Itseäni">avaimia</option>
+                <option value="En tiedä">avaimia</option>
             </select> </p>
         <p>Syntymäpäivä: <select name="Syntymapaiva">
                 <option value="Kavereita">kavereita</option>
@@ -22,7 +22,7 @@
             </select> </p>
         Kerro jotain itsestäsi: 
         <br>
-        <textarea name="Tekstikentta" rows="4" cols="60" form="muokkaus" value="<?php echo $data->kayttaja->getTeksti() ?>"><?php echo $data->kayttaja->getTeksti() ?></textarea>
+        <textarea name="Tekstikentta" rows="4" cols="60" form="muokkaus"><?php echo $data->kayttaja->getTeksti() ?></textarea>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Valmis</button>
     </form>
 

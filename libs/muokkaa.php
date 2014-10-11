@@ -1,9 +1,12 @@
 <?php
+/*Hakee käyttäjän tiedot ja näyttää ne. Jos tietoja muokataan niin tarkistaa virheet.
+Jos virheitä ei löydytty ja muokkaus tehtiin niin tiedot tallennetaan ja siirrytään profiilinäkymään. */
+
 $oikeudet = tarkistaOikeudet();
 $kirjautunut = (int) $_SESSION['kirjautunut'];
 $uusiKayttaja = Kayttaja::etsiKayttaja($kirjautunut);
 
-if (isset($_POST['muokkattiin'])) {
+if (isset($_POST['muokattiin'])){
     $uusiKayttaja->setNimimerkki($_POST['Tunnus']);
     $uusiKayttaja->setEmail($_POST['Email']);
     $uusiKayttaja->setSukupuoli($_POST['Sex']);
@@ -12,11 +15,12 @@ if (isset($_POST['muokkattiin'])) {
     $uusiKayttaja->setTeksti($_POST['Tekstikentta']);
 }
 
+
 $virheet = $uusiKayttaja->getVirheet();
 
 if (empty($virheet) && isset($_POST['muokattiin'])) {
-    $uusiKayttaja->muutaTietoja($kirjautunut);
-    $_SESSION['Onnistui'] = "Tiedot muutettu.";
+    $ok = $uusiKayttaja->muutaTietoja();
+    $_SESSION['Onnistui'] = "Tiedot muutettu :) ";
     header('Location: profiili.php');
 } else {
     naytaNakyma('muokkaus.php', array(

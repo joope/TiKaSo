@@ -19,6 +19,7 @@
     </form>
     <form action="viestit.php" method="POST" role="form">
         <input type="hidden" name="viesti" value=<?php echo $asiakas->getAsiakasID() ?>>
+        <input type="hidden" name="keskustelu" value=<?php echo $asiakas->getAsiakasID() ?>>
         <button type="submit">Lähetä viesti</button></td>
     </form>
     </tr>
