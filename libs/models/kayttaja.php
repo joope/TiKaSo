@@ -140,7 +140,43 @@ class Kayttaja {
     public static function etsiKayttajiaNimimerkilla($nimimerkki) {
         $sql = "SELECT AsiakasID, Nimimerkki, Hakutarkoitus, Teksti FROM Asiakas where Nimimerkki LIKE ? ORDER BY Nimimerkki LIMIT 10";
         $kysely = getTietokantayhteys()->prepare($sql);
-        $kysely->execute(array('%'.$nimimerkki.'%'));
+        $kysely->execute(array('%' . $nimimerkki . '%'));
+
+        $tulokset = array();
+        foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
+            $kayttaja = new Kayttaja();
+            $kayttaja->setAsiakasID($tulos->asiakasid);
+            $kayttaja->setNimimerkki($tulos->nimimerkki);
+            $kayttaja->setHakutarkoitus($tulos->hakutarkoitus);
+            $kayttaja->setTeksti($tulos->teksti);
+
+            $tulokset[] = $kayttaja;
+        }
+        return $tulokset;
+    }
+
+    public static function etsiKayttajiaHakutarkoituksella($hakutarkoitus) {
+        $sql = "SELECT AsiakasID, Nimimerkki, Hakutarkoitus, Teksti FROM Asiakas where Hakutarkoitus LIKE ? ORDER BY Nimimerkki LIMIT 10";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array('%' . $hakutarkoitus . '%'));
+
+        $tulokset = array();
+        foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
+            $kayttaja = new Kayttaja();
+            $kayttaja->setAsiakasID($tulos->asiakasid);
+            $kayttaja->setNimimerkki($tulos->nimimerkki);
+            $kayttaja->setHakutarkoitus($tulos->hakutarkoitus);
+            $kayttaja->setTeksti($tulos->teksti);
+
+            $tulokset[] = $kayttaja;
+        }
+        return $tulokset;
+    }
+
+    public static function etsiKayttajiaTekstilla($teksti) {
+        $sql = "SELECT AsiakasID, Nimimerkki, Hakutarkoitus, Teksti FROM Asiakas where Teksti LIKE ? ORDER BY Nimimerkki LIMIT 10";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array('%' . $teksti . '%'));
 
         $tulokset = array();
         foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {

@@ -3,14 +3,15 @@
 </div>
 <form class="hakulomake" action="etsi.php" method="POST">
     <p>
-    <input type="text" style="width: 200px; display: inline-block;" name="hakusana" class="form-control" placeholder="Hakusana">
-    <button style="display: inline-block; margin-left: 10px;" type="submit" class="btn btn-lg btn-primary">Hae!</button></p>
+        <input type="text" style="width: 200px; display: inline-block;" name="hakusana" class="form-control" placeholder="Hakusana">
+        <button style="display: inline-block; margin-left: 10px;" type="submit" class="btn btn-lg btn-primary">Hae!
+        </button>
+    </p>
     Etsi: 
     <select name="hakuperuste">
         <option value="Nimimerkki">Nimimerkillä</option>
         <option value="Hakutarkoitus">Hakutarkoituksella</option>
-        <option value="Sukupuoli">Sukupuolella</option>
-        <option value="Syntymapaiva">Iällä</option>
+        <option value="Teksti">Tekstillä</option>
     </select>    
 </form>
 

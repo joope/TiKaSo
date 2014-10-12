@@ -1,4 +1,4 @@
-<div class="panel-heading"><h2>Uusimmat jäsenet</h2></div>
+<div class="panel-heading"><h2>Kaikki jäsenet</h2></div>
 <table class="table">
     <thead>
     <th></th>

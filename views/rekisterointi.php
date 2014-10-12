@@ -4,8 +4,8 @@
         <input type="email" class="form-control" placeholder="Sähköposti" required name="Email" value="<?php echo $data->kayttaja->getEmail() ?>">
         <input type="password" class="form-control" placeholder="Salasana" required name="Salasana">
 
-        <p>Sukupuoli: <input type="radio" name="Sex" value="mies" <?php echo $data->kayttaja->palautaSukupuoli("m") ?>>Mies
-            <input type="radio" name="Sex" value="nainen" <?php echo $data->kayttaja->palautaSukupuoli("f") ?>>Nainen</p>
+        <p>Sukupuoli: <input type="radio" name="Sex" value="m" <?php echo $data->kayttaja->palautaSukupuoli("m") ?>>Mies
+            <input type="radio" name="Sex" value="f" <?php echo $data->kayttaja->palautaSukupuoli("f") ?>>Nainen</p>
         <p>Mitä etsit?
             <select name="Hakuperuste">
                 <option value="Kavereita">kavereita</option>
@@ -21,7 +21,7 @@
             </select> </p>
         Kerro jotain itsestäsi: 
         <br>
-        <textarea name="Tekstikentta" rows="4" cols="60" form="rekisteroityminen" value="<?php echo $data->kayttaja->getTeksti() ?>"></textarea>
+        <textarea name="Tekstikentta" rows="4" cols="60" form="rekisteroityminen"><?php echo $data->kayttaja->getTeksti() ?></textarea>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Valmis</button>
     </form>
 
