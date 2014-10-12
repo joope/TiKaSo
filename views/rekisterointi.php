@@ -13,12 +13,6 @@
                 <option value="Seurustelusuhdetta">seurustelusuhdetta</option>
                 <option value="Itseäni">avaimia</option>
             </select> </p>
-        <p>Syntymäpäivä: <select name="Syntymapaiva">
-                <option value="Kavereita">kavereita</option>
-                <option value="Juttuseuraa">juttuseuraa</option>
-                <option value="Seurustelusuhdetta">seurustelusuhdetta</option>
-                <option value="Itseäni">avaimia</option>
-            </select> </p>
         Kerro jotain itsestäsi: 
         <br>
         <textarea name="Tekstikentta" rows="4" cols="60" form="rekisteroityminen"><?php echo $data->kayttaja->getTeksti() ?></textarea>

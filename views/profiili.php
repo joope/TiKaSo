@@ -4,7 +4,6 @@
         <div class="col-md-4">
             <p class="centeredImage"><img src="http://www.fact.co.uk/media/497038/the_shining_2.png" width="320" height="200" align="middle" alt="Kaunis nainen :D"></p>
             <div class="infovalikko">
-                <?php //if($_SESSION['admin'] || $_SESSION['kirjautunut'] == $data->kayttaja->getAsiakasID){ ?>
                 <a href="#">Vaihda kuva</a><br>
                 <a href="#">Luo salainen sivu</a><br>
                 <a href="muokkaatietoja.php">Muokkaa tietoja</a><br>
@@ -33,6 +32,17 @@
                 </div>
             </div>
         </div>
+        <!-- Tähän salaiset tiedot paneeleina
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Salaisuus</div>
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+        -->
+        
     </div>
 </div>
 
