@@ -48,8 +48,11 @@
     padding-top: 50px;
 }
 .hakulomake{
-    width: 200px;
+    //width: 200px;
     padding: 10px;
+}
+.hakutulokset{
+    height: 500px;
 }
 .vasen{
     padding-bottom: 10px;
