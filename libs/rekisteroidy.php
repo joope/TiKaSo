@@ -12,7 +12,6 @@ if (isset($_POST['Tunnus'])) {
 }
 
 $virheet = $uusiKayttaja->getVirheet();
-$virheilmoitus = "";
 
 if (empty($virheet) && isset($_POST['Tunnus']) && $uusiKayttaja->lisaaTietokantaan() != false) {
     $_SESSION['Onnistui'] = "Rekisteröinti onnistui! Kirjaudu sisään.";

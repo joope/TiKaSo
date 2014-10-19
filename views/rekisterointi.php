@@ -15,7 +15,7 @@
             </select> </p>
         Kerro jotain itsestäsi: 
         <br>
-        <textarea name="Tekstikentta" rows="4" cols="60" form="rekisteroityminen"><?php echo $data->kayttaja->getTeksti() ?></textarea>
+        <textarea name="Tekstikentta" class="form-control" rows="4" cols="60" form="rekisteroityminen"><?php echo $data->kayttaja->getTeksti() ?></textarea>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Valmis</button>
     </form>
 

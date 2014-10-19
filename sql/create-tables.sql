@@ -13,19 +13,12 @@ CREATE TABLE Asiakas
 CREATE TABLE Laskutustiedot
 (
 	LaskutusID serial PRIMARY KEY,
-	AsiakasID integer References Asiakas(AsiakasID) NOT NULL, 
+	AsiakasID integer References Asiakas(AsiakasID), 
 	Etunimi VARCHAR(64),
 	Sukunimi VARCHAR(64),
 	Paikkakunta VARCHAR(64),
 	Asuinkaupunki VARCHAR(64),
 	Osoite VARCHAR(128)
-);
-CREATE TABLE Kuvat
-(
-	KuvaID serial PRIMARY KEY,
-	Img BYTEA,
-	Teksti VARCHAR(64),
-	AsiakasID integer References Asiakas(AsiakasID) NOT NULL
 );
 
 CREATE TABLE Viesti
@@ -37,25 +30,15 @@ CREATE TABLE Viesti
 	Lahetysaika timestamp NOT NULL,
 	Luettu boolean
 );
-CREATE TABLE Kiinnostus
-(	
-	KiinnostusID serial PRIMARY KEY,
-	Nimi varchar(64) NOT NULL,
-	AsiakasID integer references Asiakas(AsiakasID)
-);
-CREATE TABLE Julkinensivu
-(
-	JulkinenID serial PRIMARY KEY,
-	OmistajaID integer references Asiakas(AsiakasID),
-	Raportoitu boolean
-);
+
 CREATE TABLE Salainensivu
 (
 	SalainenID serial PRIMARY KEY,
 	OmistajaID integer references Asiakas(AsiakasID),
-	SalainenSisalto varchar(256) NOT NULL
+	Otsikko varchar(64) NOT NULL,
+	Sisalto varchar(256) NOT NULL
 );
-CREATE TABLE SalaisetSivutNakevat
+CREATE TABLE SalaistenNakyvyys
 (
 	NakyvyysID serial PRIMARY KEY,
 	SalainenID integer references Salainensivu(SalainenID),

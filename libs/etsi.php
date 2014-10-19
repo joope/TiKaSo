@@ -25,12 +25,12 @@ if (isset($_POST['hakusana']) && $_POST['hakusana'] != "") {
     } else if ($hakuperuste == "Teksti") {
         $asiakaslista = Kayttaja::etsiKayttajiaTekstilla($hakusana);
     }
+    $sivumaara = 1;
     if ($asiakaslista == null) {
         $_SESSION['Epaonnistui'] = "Ei hakutuloksia!";
         $asiakaslista = Kayttaja::getKayttajatSivulla($sivunro, $listausmaara);
         $sivumaara = ceil(Kayttaja::lukumaara() / $listausmaara);
     }
-    $sivumaara = 1;
 }
 
 naytaNakyma($sivu, array(

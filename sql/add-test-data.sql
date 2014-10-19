@@ -16,14 +16,8 @@ VALUES (1, 2, 'tykkääks kissoista?' , TIMESTAMP '1999-01-08 04:05:06
 (2, 1, 'joo ;)' , TIMESTAMP '1999-01-08 04:05:12
 ');
 
-INSERT INTO Kiinnostus (Nimi, AsiakasID)
-VALUES ('Uiminen', 1), ('Urheilu', 1);
+INSERT INTO Salainensivu (OmistajaID, Otsikko, Sisalto)
+VALUES (1, 'Salaisuuteni', 'Tämä on jonnen salaisuus, jonne salaisesti tykkää php:stä'), (2, ':3:3:3', 'Tämä on jonnan salaisuus, jonna on salaisesti ihastunut Jonneen :3');
 
-INSERT INTO Julkinensivu (OmistajaID, Raportoitu)
-VALUES (1, false);
-
-INSERT INTO Salainensivu (OmistajaID, SalainenSisalto)
-VALUES (1, 'Tämä on jonnen salainen sivu, jonne salaisesti tykkää php:stä'), (2, 'Tämä on jonnan salainen sivu, jonna on salaisesti ihastunut Jonneen :3');
-
-INSERT INTO SalaisetSivutNakevat(SalainenID, AsiakasID)
-VALUES (1, 2);
+INSERT INTO SalaistenNakyvyys(SalainenID, AsiakasID)
+VALUES (1, 2), (2, 1), (1, 6);

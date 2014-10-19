@@ -310,6 +310,7 @@ class Kayttaja {
     public function setSukupuoli($Sukupuoli) {
         if ($Sukupuoli != "m" && $Sukupuoli != "f") {
             $this->Virheet['Sukupuoli'] = 'Valitse sukupuoli.';
+            return;
         }
         if ($Sukupuoli == "m") {
             $this->Sukupuoli = 1;

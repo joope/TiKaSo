@@ -13,7 +13,7 @@
         <td><?php echo $asiakas->getNimimerkki(); ?></td>
         <td><?php echo $asiakas->getHakutarkoitus(); ?></td>
         <td><?php echo $asiakas->getTeksti(); ?></td>
-    <form action="profiili.php" method="POST" role="form">
+    <form action="profiili.php" method="GET" role="form">
         <input type="hidden" name="profiili" value=<?php echo $asiakas->getAsiakasID() ?>>
         <td><button type="submit">Näytä profiili</button>
     </form>
